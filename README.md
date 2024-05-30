@@ -1,8 +1,42 @@
 # CCDSALG-S13-Group9
+This project contains source code for CCDSALG project, all organized within the src/ directory
 
+#Prerequisites
+Before running the project, ensure you have the necessary tool installed on your machine:
+## GCC Compiler:
+Required for compiling C programs. Available default on most Linux distributions and macOS. Windows users may need to install MinGW or Cygwin.
+## Make:
+A build utility that simplifies the compilation process. It is highly recommended for automating the build process.
+### Installing Make:
+#### Windows:
+To install make, you can use choco. Open command prompt as Administrator and run:
+choco install make -y
+
+or download directly [here](https://gnuwin32.sourceforge.net/packages/make.htm)
+
+#### macOS/Linux: 
+You may visit [Stack Overflow](https://stackoverflow.com/) or [Youtube](https://youtube.com) on how to install make in your OS.
+
+I recommend using make since you can configure it to automatically compile all C files, check Makefile file 
+
+## How to run
+### Using Make
+Ensure make is installed, this method is preferred for its simplicity and efficiency.
+Compile and run the project by navigating to the project's root directory and execute: make
+
+^ This command reads the Makefile to compile all C files and generates the executable.
 MC01
 
+### Without Make
+
 PRECEDENCE OF OPERATORS 
+If you don't have make or prefer manual compilation, make sure you have gcc installed
+
+
+
+
+
+
 
 | Operators | Priority |
 |:---------:|:--------:|
