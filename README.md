@@ -31,7 +31,7 @@ MC01
 
 PRECEDENCE OF OPERATORS 
 If you don't have make or prefer manual compilation, make sure you have gcc installed
-
+gcc -g -Wall -c src/evaluate-postfix.c -o obj/evaluate-postfix.o && gcc -g
 
 
 
