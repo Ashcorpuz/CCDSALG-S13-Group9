@@ -14,9 +14,6 @@ choco install make -y
 
 or download directly [here](https://gnuwin32.sourceforge.net/packages/make.htm)
 
-#### macOS/Linux: 
-You may visit [Stack Overflow](https://stackoverflow.com/) or [Youtube](https://youtube.com) on how to install make in your OS.
-
 I recommend using make since you can configure it to automatically compile all C files, check Makefile file 
 
 ## How to run
