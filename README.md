@@ -22,7 +22,6 @@ Ensure make is installed, this method is preferred for its simplicity and effici
 Compile and run the project by navigating to the project's root directory and execute: make
 
 ^ This command reads the Makefile to compile all C files and generates the executable.
-MC01
 
 ### Without Make
 
