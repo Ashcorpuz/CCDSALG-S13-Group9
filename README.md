@@ -16,9 +16,9 @@ A build utility that simplifies the compilation process. It is highly recommende
 5. Wait a few seconds for the command to complete
 6. If you don't see any errors, you are ready to use Chocolatey! Type *choco* or *choco -?*
 
-or download directly [here](https://gnuwin32.sourceforge.net/packages/make.htm)
+or see full instructions/guide [here]([https://gnuwin32.sourceforge.net/packages/make.htm](https://chocolatey.org/install))
 
-I recommend using make since you can configure it to automatically compile all C files, check Makefile file 
+Using make, we can configure the program to automatically compile all C files, and be able to check the Makefile. 
 
 ## How to run
 ### Using Make
