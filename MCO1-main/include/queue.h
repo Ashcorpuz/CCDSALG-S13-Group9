@@ -1,6 +1,6 @@
 /**
  * queue.h
- * Author: Ashley Corpuz
+ * Author: Ashley Corpuz, Princess Escobar, Herise Visto
  *
  * Using 'ADT' design pattern
  * 	referenced from: https://leanpub.com/patternsinc
