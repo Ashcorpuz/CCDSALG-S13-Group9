@@ -9,8 +9,12 @@ Required for compiling C programs. Available default on most Linux distributions
 A build utility that simplifies the compilation process. It is highly recommended for automating the build process.
 ### Installing Make:
 #### Windows:
-To install make, you can use choco. Open command prompt as Administrator and run:
-choco install make -y
+1. To install make, you can use chocolatey software. Open command prompt as Administrator and ensure you are using an administrative shell.
+2. Install with powershell.exe
+3. Copy this command: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+4. Paste the command into your shell and press enter
+5. Wait a few seconds for the command to complete
+6. If you don't see any errors, you are ready to use Chocolatey! Type *choco* or *choco -?*
 
 or download directly [here](https://gnuwin32.sourceforge.net/packages/make.htm)
 
