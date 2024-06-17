@@ -3,8 +3,6 @@ This project contains source code for CCDSALG project, all organized within the 
 
 #Prerequisites
 Before running the project, ensure you have the necessary tool installed on your machine:
-## GCC Compiler:
-Required for compiling C programs. Available default on most Linux distributions and macOS. Windows users may need to install MinGW or Cygwin.
 ## Make:
 A build utility that simplifies the compilation process. It is highly recommended for automating the build process.
 ### Installing Make:
