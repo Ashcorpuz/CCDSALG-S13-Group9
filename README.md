@@ -1,7 +1,7 @@
 # CCDSALG-S13-Group9
 This project contains source code for CCDSALG project, all organized within the src/ directory
 
-#Prerequisites
+# Pre-requisites
 Before running the project, ensure you have the necessary tool installed on your machine:
 ## Make:
 A build utility that simplifies the compilation process. It is highly recommended for automating the build process.
