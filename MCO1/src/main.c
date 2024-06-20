@@ -34,10 +34,13 @@ int main()
             //Convert Infix to postfix
             infixToPostfix(infixExpression, postfixQueue, evaluateQueue);
             toExpression(postfixQueue, postfixExpression);
-            // check if napapass yung values [will delete]
-            printf("check evaluation queue: %d\n", queueEmpty(evaluateQueue));
             //Evaluate Postfix
-            //evaluation = evaluatePostfix(postfix);
+            /*NOTE
+                please fix yung evaluatePostfix na lang, see notes there
+            */
+            evaluation = evaluatePostfix(evaluateQueue);
+            printf("Evaluate:\n");
+            printf("\033[32m%d\033[0m\n", evaluation);
         }
     }
     printf("END\n");

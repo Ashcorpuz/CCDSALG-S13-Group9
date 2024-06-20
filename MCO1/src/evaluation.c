@@ -7,69 +7,76 @@
 
 int applyOperator(char *operator, int operand1, int operand2) {
     if (strcmp(operator, "+") == 0) return operand1 + operand2;
-    if (strcmp(operator, "-") == 0) return operand1 - operand2;
-    if (strcmp(operator, "*") == 0) return operand1 * operand2;
-    if (strcmp(operator, "/") == 0) {
+    else if (strcmp(operator, "-") == 0) return operand1 - operand2;
+    else if (strcmp(operator, "*") == 0) return operand1 * operand2;
+    else if (strcmp(operator, "/") == 0) {
         if (operand2 == 0) {
             printf("Division by zero error!\n");
             exit(EXIT_FAILURE);
         }
         return operand1 / operand2;
     }
-    if (strcmp(operator, "%") == 0) return operand1 % operand2;
-    if (strcmp(operator, "^") == 0) return (int)pow(operand1, operand2);
-    if (strcmp(operator, "<") == 0) return operand1 < operand2;
-    if (strcmp(operator, ">") == 0) return operand1 > operand2;
-    if (strcmp(operator, "<=") == 0) return operand1 <= operand2;
-    if (strcmp(operator, ">=") == 0) return operand1 >= operand2;
-    if (strcmp(operator, "==") == 0) return operand1 == operand2;
-    if (strcmp(operator, "!=") == 0) return operand1 != operand2;
-    if (strcmp(operator, "&&") == 0) return operand1 && operand2;
-    if (strcmp(operator, "||") == 0) return operand1 || operand2;
-    return 0;
-}
-
-bool isOperand(char *op){
-    for (int i = 0; op[i] != '\0'; i++) {
-        if (!isdigit(op[i])) return false;
-    }
-    return true;
+    else if (strcmp(operator, "%") == 0) return operand1 % operand2;
+    else if (strcmp(operator, "^") == 0) return (int)pow(operand1, operand2);
+    else if (strcmp(operator, "<") == 0) return operand1 < operand2;
+    else if (strcmp(operator, ">") == 0) return operand1 > operand2;
+    else if (strcmp(operator, "<=") == 0) return operand1 <= operand2;
+    else if (strcmp(operator, ">=") == 0) return operand1 >= operand2;
+    else if (strcmp(operator, "==") == 0) return operand1 == operand2;
+    else if (strcmp(operator, "!=") == 0) return operand1 != operand2;
+    else if (strcmp(operator, "&&") == 0) return operand1 && operand2;
+    else if (strcmp(operator, "||") == 0) return operand1 || operand2;
+    else
+    return NULL;
 }
 
 int evaluatePostfix(QueuePtr postfix) {
     StackPtr stack = createStack(MAX);
+    QueuePtr operands = createQueue(MAX);
     int result;
-    printf("HELLO\n");
+    char answer[20];
 
     while (!queueEmpty(postfix)) {
-        printf("Hello\n\n");
         char *token = dequeue(postfix);
-        if(isOperand(token)){
-            push(stack, atoi(token));
-            printf("Stack: %d\n", atoi(token));
-        }
-
-        /*
-        if (strcmp(token, " ") == 0) { // to skip the spacess
+        //printf("Token: %s\n", token);
+        if(isspace(*token))
             continue;
-        }
-
-        if (isdigit(token[0])) { // kapag token is operand, it will push sa stack
+        else if(isdigit(*token)){
+            enqueue(operands, token);
             push(stack, token);
-        } else {
-            // kapag yung token operator, i-ppop two operands from the stack 
-            int operand2 = atoi(pop(stack));
-            int operand1 = atoi(pop(stack));
-            int result = applyOperator(token, operand1, operand2);
+        }
+        else{
+            /*NOTE
+            problem here is yung pagkakasunod ng eevaluate na expression, yun na lang need i-fix*/
 
-            char resultStr[12]; 
-            snprintf(resultStr, 12, "%d", result);
-            push(stack, resultStr);
-        }*/
+            if(isOperator(*token)){
+                int operand1 = atoi(dequeue(operands));
+                int operand2 = atoi(dequeue(operands));
+                
+                //checking of passing [pa-delete na lang if done na kayo mag debug]
+                printf("Operands %d %s %d\n", operand1,  token, operand2);
+
+                //perform operation
+                int ans = applyOperator(token, operand1, operand2);
+                printf("ANSWER: %d\n", ans);
+                sprintf(answer, "%d", ans);
+                enqueue(operands, answer);
+            }
+            else if(isMultiCharOperator(token[0], token[1])){
+                int operand1 = atoi(dequeue(operands));
+                int operand2 = atoi(dequeue(operands));
+
+                //checking of passing [pa-delete na lang if done na kayo mag debug]
+                printf("Operands %d %s %d\n", operand1,  token, operand2);
+
+                //perform operation
+                int ans = applyOperator(token, operand1, operand2);
+                printf("ANSWER: %d\n", ans);
+                sprintf(answer, "%d", ans);
+                enqueue(operands, answer);
+            }
+        }
     }
-    /*
-    int result = atoi(pop(stack));
-    free(stack);
-    return result;*/
+    result = atoi(answer);
     return result;
 }
