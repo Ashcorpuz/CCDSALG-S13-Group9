@@ -17,27 +17,27 @@ struct Stack
 };
 
 // PRIVATE:
-void _push(StackPtr stack, char *item)
+static void _push(StackPtr stack, char *item)
 {
     int nextIndex = stack->top + 1;
-    stack->data[nextIndex] = duplicate(item);
+    stack->data[nextIndex] = strdup(item);
     stack->top = nextIndex;
 }
-char *_pop(StackPtr stack)
+static char *_pop(StackPtr stack)
 {
     int currentIndex = stack->top;
-    char *item = duplicate(stack->data[currentIndex]);
+    char *item = strdup(stack->data[currentIndex]);
     stack->top = currentIndex - 1;
     free(stack->data[currentIndex]);
     return item;
 }
-char *_top(StackPtr stack)
+static char *_top(StackPtr stack)
 {
     int index = stack->top;
     char *item = stack->data[index];
     return item;
 }
-unsigned int _sizestack(StackPtr stack)
+static unsigned int _sizestack(StackPtr stack)
 {
     return stack->top + 1;
 }
