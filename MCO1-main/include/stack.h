@@ -14,7 +14,11 @@
 #include <stdbool.h>
 #define STRING_SIZE 8
 
-typedef struct Stack *StackPtr;
+typedef struct Stack {
+    char **data;
+    int top;
+    int maxSize;
+} Stack, *StackPtr;
 
 StackPtr createStack(unsigned int capacity);
 
