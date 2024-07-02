@@ -11,7 +11,9 @@ typedef struct Queue{
 } Queue;
 
 typedef struct Queue *QueuePtr;
-
+void adjustIndex(QueuePtr Q);
+char *deletesLast(QueuePtr Q);
+void swapOperands(QueuePtr Q);
 QueuePtr createQueue(unsigned int size);
 void enqueue(QueuePtr Q, char *x);
 char *dequeue(QueuePtr Q);

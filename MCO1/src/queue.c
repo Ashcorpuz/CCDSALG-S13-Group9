@@ -6,6 +6,28 @@
 
 #define MAX 256  // Define the maximum size of the queue
 
+void adjustIndex(QueuePtr Q){
+    int currentInd = Q->head;
+    int newInd = Q->head+1;
+    Q->head = newInd;
+};
+
+char *_deletesLast(QueuePtr Q){
+    char *op = queueTail(Q);
+    Q->item[Q->tail-1] = "\0";
+    //free(Q->item[Q->head]); // deletes first element
+    Q->tail-=1;
+    return op;
+}
+
+char *deletesLast(QueuePtr Q){
+    if(Q->head == Q->tail){
+        fprintf(stderr, "Queue is empty\n");
+    }
+    char *op = _deletesLast(Q);
+    return op;
+}
+
 QueuePtr createQueue(unsigned int size) {
     QueuePtr Q = malloc(sizeof *Q);
     Q->capacity = size;

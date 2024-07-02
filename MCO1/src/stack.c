@@ -3,6 +3,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*void adjustIndex(StackPtr S){
+    int currentInd = S->top;
+    int newInd = S->top+1;
+    S->top = newInd;
+};*/
+
+void showStack(StackPtr S){
+    printf("Stack: ");
+    while(!isEmptyStack(S)){
+        printf("%s, ", pop(S->data));
+    }
+    printf("\n");
+}
+
 void _push(StackPtr stack, char *item)
 {
     int nextIndex = stack->top + 1;

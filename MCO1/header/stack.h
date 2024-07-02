@@ -14,6 +14,9 @@ typedef struct Stack {
 
 StackPtr createStack(unsigned int capacity);
 
+void showStack(StackPtr S);
+//void adjustIndex(StackPtr stack);
+
 void push(StackPtr stack, char *item);
 char *pop(StackPtr stack);
 char *top(StackPtr stack);

@@ -30,15 +30,19 @@ int applyOperator(char *operator, int operand1, int operand2) {
     return NULL;
 }
 
+int applyLogicalNot(int operand){
+    return !operand;
+}
+
 int evaluatePostfix(QueuePtr postfix) {
     StackPtr stack = createStack(MAX);
     QueuePtr operands = createQueue(MAX);
+    QueuePtr expression = createQueue(MAX);
     int result;
     char answer[20];
 
     while (!queueEmpty(postfix)) {
         char *token = dequeue(postfix);
-        //printf("Token: %s\n", token);
         if(isspace(*token))
             continue;
         else if(isdigit(*token)){
@@ -46,32 +50,42 @@ int evaluatePostfix(QueuePtr postfix) {
             push(stack, token);
         }
         else{
-            /*NOTE
-            problem here is yung pagkakasunod ng eevaluate na expression, yun na lang need i-fix*/
-
             if(isOperator(*token)){
-                int operand1 = atoi(dequeue(operands));
-                int operand2 = atoi(dequeue(operands));
-                
-                //checking of passing [pa-delete na lang if done na kayo mag debug]
-                printf("Operands %d %s %d\n", operand1,  token, operand2);
-
-                //perform operation
-                int ans = applyOperator(token, operand1, operand2);
-                printf("ANSWER: %d\n", ans);
+                int operand1, operand2, ans;
+                if(strcmp(token, "!")==0){
+                    enqueue(expression, deletesLast(operands));
+                    operand1 = atoi(deletesLast(expression));
+                    ans = applyLogicalNot(operand1);
+                    //Check
+                    //printf("%s %d\n", token, operand1);
+                    //printf("ANS: %d\n", ans);
+                }
+                else{
+                    enqueue(expression, deletesLast(operands));
+                    enqueue(expression, deletesLast(operands));
+                    operand1 = atoi(deletesLast(expression));
+                    operand2 = atoi(deletesLast(expression));
+                    //perform operation
+                    ans = applyOperator(token, operand1, operand2);
+                    //Check
+                    //printf("Operands %d %s %d\n", operand1,  token, operand2);   
+                    //printf("ANSWER: %d\n", ans);
+                }
                 sprintf(answer, "%d", ans);
                 enqueue(operands, answer);
             }
             else if(isMultiCharOperator(token[0], token[1])){
-                int operand1 = atoi(dequeue(operands));
-                int operand2 = atoi(dequeue(operands));
+                enqueue(expression, deletesLast(operands));
+                enqueue(expression, deletesLast(operands));
+                int operand1 = atoi(deletesLast(expression));
+                int operand2 = atoi(deletesLast(expression));
 
-                //checking of passing [pa-delete na lang if done na kayo mag debug]
-                printf("Operands %d %s %d\n", operand1,  token, operand2);
+                //checking 
+                //printf("Operands %d %s %d\n", operand1,  token, operand2);
 
                 //perform operation
                 int ans = applyOperator(token, operand1, operand2);
-                printf("ANSWER: %d\n", ans);
+                //printf("ANSWER: %d\n", ans);
                 sprintf(answer, "%d", ans);
                 enqueue(operands, answer);
             }
