@@ -29,4 +29,7 @@ Ensure make is installed, this method is preferred for its simplicity and effici
 4. make
 5. ./bin/app.exe
 
+To view the output file:
+type .\TRASVERSAL.txt
+
 ^ This command reads the Makefile to compile all C files and generates the executable.

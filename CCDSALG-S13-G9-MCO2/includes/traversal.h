@@ -6,7 +6,7 @@
 #include "queue.h"
 #include "stack.h"
 
-void DFS(GraphPtr graph, char *start_vertex, int num_vertices);
-void BFS(GraphPtr graph, char *startVertex, int num_vertices);
+char *DFS(GraphPtr graph, char *start_vertex, int num_vertices);
+char *BFS(GraphPtr graph, char *startVertex, int num_vertices);
 
 #endif

@@ -6,6 +6,39 @@
 
 #define MAX_STR 124
 #define MAX_VERTICES 100
+#define BLUE "\033[34m"
+#define WHITE "\033[0m"
+#define GREEN "\033[32m"
+#define PURPLE "\033[35m"
+#define RED "\033[31m"
+
+char *showVertexIDdegrees(char sources[][MAX_STR], int source_count, int edges_count[])
+{
+    char *result = (char *)malloc(MAX_STR * sizeof(char));
+    result[0] = '\0';
+
+    for (int i = 0; i < source_count; i++)
+    {
+        char line[MAX_STR];
+        snprintf(line, sizeof(line), "%s %d\n", sources[i], edges_count[i]);
+        //printf("%s%s %d%s\n", BLUE, sources[i], edges_count[i], WHITE);
+
+        strcat(result, line);
+    }
+
+    return result;
+}
+
+void outputFile(char *vertexIDs, char *dfs_result, char *bfs_result){
+    FILE *outputFile = fopen("TRAVERSAL.txt", "w");
+    
+    fprintf(outputFile, "%s%s%s\n", BLUE, vertexIDs, WHITE);
+    fprintf(outputFile, "%sBFS Traversal: %s%s\n", GREEN, bfs_result, WHITE);
+    fprintf(outputFile, "%sDFS Traversal: %s%s\n", PURPLE, dfs_result, WHITE);
+    
+    fclose(outputFile);
+}
+
 
 int main()
 {
@@ -20,7 +53,7 @@ int main()
 
     if (fptr == NULL)
     {
-        printf("\033[31m%s not found.\033[0m", file_name);
+        printf("%s%s not found.%s", RED, file_name, WHITE);
         return 1;
     }
 
@@ -68,6 +101,8 @@ int main()
         }
     }
 
+    
+
     for (int i = 0, k = 0; i < source_count; i++)
     {
         for (int j = 0; j < edges_count[i]; j++)
@@ -75,6 +110,8 @@ int main()
             addEdge(graph, sources[i], destinations[k++]);
         }
     }
+
+    
 
     char start_vertex[MAX_STR];
     printf("Input start vertex for the traversal: ");
@@ -85,12 +122,24 @@ int main()
 
     if (list_index == -1)
     {
-        printf("\033[31mVertex %s not found.\033[0m", start_vertex);
+        printf("%sVertex %s not found.%s", RED, start_vertex, WHITE);
         return 0;
     }
 
-    DFS(graph, start_vertex, number_of_vertices);
-    BFS(graph, start_vertex, number_of_vertices);
+    char *vertexIDs = showVertexIDdegrees(sources, source_count, edges_count);
+    //printf("%s%s%s", BLUE, vertexIDs, WHITE);
+
+    char *dfs_result = DFS(graph, start_vertex, number_of_vertices);
+    //printf("%sDFS Traversal: %s%s\n", GREEN, dfs_result, WHITE);
+
+    char *bfs_result = BFS(graph, start_vertex, number_of_vertices);
+    //printf("%sBFS Traversal: %s%s\n", PURPLE, bfs_result, WHITE);
     fclose(fptr);
+
+    //draw
+    
+
+
+    outputFile(vertexIDs, dfs_result, bfs_result);
     return 0;
 }
