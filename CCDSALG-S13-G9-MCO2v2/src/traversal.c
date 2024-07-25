@@ -103,6 +103,9 @@ char *BFS(GraphPtr graph, char *start_vertex, int num_vertices)
     }
     result[0] = '\0';
 
+    int adj[num_vertices]; // newly added defined adj
+    int count;
+
     // Mark the start vertex as visited and enqueue it
     visited[start_index] = true;
     enqueue(queue, start_index);
@@ -133,12 +136,12 @@ char *BFS(GraphPtr graph, char *start_vertex, int num_vertices)
         qsort(adj, count, sizeof(int), compare); // newly added
 
         // enqueue all unvisited adjacent vertices
-        for (int i=0;i<count:i++)
+        for (int i = 0; i < count; i++)
         {
             if(!visited[adj[i]])
             {
                 visited[adj[i]] = true;
-                enqueue(queue, adj[i];
+                enqueue(queue, adj[i]);
             }
         }
             
