@@ -1,0 +1,7 @@
+[34mBruce 1
+Clark 2
+Diana 3
+Hal 2
+[0m
+[32mBFS Traversal: Clark Diana Hal Bruce [0m
+[35mDFS Traversal: Clark Diana Bruce Hal[0m
