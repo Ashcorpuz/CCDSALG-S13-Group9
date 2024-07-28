@@ -1,3 +1,4 @@
+
 #include "../includes/traversal.h"
 
 #include <stdio.h>
@@ -55,7 +56,7 @@ char *DFS(GraphPtr graph, char *start_vertex, int num_vertices)
         }
         free(current_vertex);
     }
-    result[strlen(result) - 1] = '\0';
+    result[strlen(result) -1] = '\0';
     printf("\n");
     free(visited);
     destroyStack(stack);
@@ -77,8 +78,6 @@ char *BFS(GraphPtr graph, char *start_vertex, int num_vertices)
         return NULL; // NULL added 
     }
 
-    printf("The output file TRAVERSALS.TXT was successfully generated. Please check the file for traversal results.");
-
     // Initialize visited array
     bool *visited = (bool *)malloc(num_vertices * sizeof(bool));
     if (visited == NULL)
@@ -94,7 +93,7 @@ char *BFS(GraphPtr graph, char *start_vertex, int num_vertices)
     // Store traversal sequence
     int traversal_size = num_vertices * MAX_STR;
     char *result = (char *)malloc(traversal_size * sizeof(char));
-    if (result == NULL)
+    if (result == NULL) // newly added
     {
         printf("Memory Allocation Error: failed to allocate memory for result.\n");
         free(visited);
@@ -104,6 +103,7 @@ char *BFS(GraphPtr graph, char *start_vertex, int num_vertices)
     result[0] = '\0';
 
     int adj[num_vertices]; // newly added defined adj
+    int count;
 
     // Mark the start vertex as visited and enqueue it
     visited[start_index] = true;
@@ -121,28 +121,29 @@ char *BFS(GraphPtr graph, char *start_vertex, int num_vertices)
 
         // Get all adjacent vertices of the dequeued vertex
         NodePtr adj_list = getAdjacencyList(graph, vertex_index);
-        int count = 0; // newly added
+        int ajd[num_vertices], count = 0; // newly added
         while (adj_list != NULL)
         {
             int adj_index = search_index(graph, adj_list->vertex);
             if (adj_index != -1 && !visited[adj_index])
             {
-                adj[count++] = adj_index;
+                adj[count++] = adj_index; // newly added
             }
             adj_list = adj_list->next;
         }
         // sort adjacent vertices
-        qsort(adj, count, sizeof(int), compare);
+        qsort(adj, count, sizeof(int), compare); // newly added
 
         // enqueue all unvisited adjacent vertices
         for (int i = 0; i < count; i++)
         {
-            if (!visited[adj[i]])
+            if(!visited[adj[i]])
             {
                 visited[adj[i]] = true;
                 enqueue(queue, adj[i]);
             }
         }
+            
     }
 
     printf("\n");

@@ -21,7 +21,7 @@ char *showVertexIDdegrees(char sources[][MAX_STR], int source_count, int edges_c
     {
         char line[MAX_STR];
         snprintf(line, sizeof(line), "%s %d\n", sources[i], edges_count[i]);
-        //printf("%s%s %d%s\n", BLUE, sources[i], edges_count[i], WHITE);
+        printf("%s%s %d%s\n", BLUE, sources[i], edges_count[i], WHITE);
 
         strcat(result, line);
     }
@@ -127,19 +127,15 @@ int main()
     }
 
     char *vertexIDs = showVertexIDdegrees(sources, source_count, edges_count);
-    //printf("%s%s%s", BLUE, vertexIDs, WHITE);
 
     char *dfs_result = DFS(graph, start_vertex, number_of_vertices);
-    //printf("%sDFS Traversal: %s%s\n", GREEN, dfs_result, WHITE);
+    printf("%sDFS Traversal: %s%s\n", GREEN, dfs_result, WHITE);
 
     char *bfs_result = BFS(graph, start_vertex, number_of_vertices);
-    //printf("%sBFS Traversal: %s%s\n", PURPLE, bfs_result, WHITE);
+    printf("%sBFS Traversal: %s%s\n\n", PURPLE, bfs_result, WHITE);
     fclose(fptr);
 
-    //draw
-    
-
-
     outputFile(vertexIDs, dfs_result, bfs_result);
+    printf("The output file TRAVERSALS.TXT was successfully generated. Please check the file for traversal results.\n");
     return 0;
 }
